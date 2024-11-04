@@ -1,0 +1,22 @@
+import requests
+
+# Replace 'YOUR_API_KEY' with your actual API key
+headers = {
+    'x-cg-demo-api-key':3V8JWRQSQPT1VX4MSIY97GKK51IMZ64R6C
+}
+
+# Example endpoint to get token price data
+url = 'https://api.coingecko.com/api/v3/simple/price'
+params = {
+    'ids': 'ethereum',  # Replace with your token ID
+    'vs_currencies': 'usd'
+}
+
+response = requests.get(url, headers=headers, params=params)
+
+if response.status_code == 200:
+    data = response.json()
+    token_price = data['ethereum']['usd']  # Adjust based on your token
+    print(f'The price of Ethereum in USD is ${token_price}')
+else:
+    print('Failed to retrieve data from the API')
